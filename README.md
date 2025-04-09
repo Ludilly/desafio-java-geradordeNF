@@ -12,5 +12,6 @@ Como melhorar e proximos passos
 
 TO-DO
 - Utilizaçao de funçoes lambdas da AWS e chamada de um serviço SNS para as chamadas paralelas de modo a trazer mais dinamismo e tornando mais escalável
-- Criaçao de um middleware mais aprofundado de error handler para retornar o erro especifico do campo que veio em branco e retornar http status 400
+- Criaçao de um middleware para retornar mensagens amigáveis ao usuário, que indique de forma intuitiva o erro
 - Testes unitários das validaçoes, das strategys, e do e2e da rota, validando, através de um mock, a response para o status de CREATED ou para casos de erro
+- Swagger para a documentaçao do endpoint e orientaçao caso alguma outra pessoa ou time reutilize
