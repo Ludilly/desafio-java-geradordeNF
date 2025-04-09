@@ -21,7 +21,7 @@ import java.util.concurrent.*;
 @Service
 public class GeradorNotaFiscalServiceImpl implements GeradorNotaFiscalService {
 
-	private final ExecutorService executor = Executors.newFixedThreadPool(4); // 4 threads paralelas
+	private final ExecutorService executor = Executors.newFixedThreadPool(4);
 
 	@Override
 	public NotaFiscal gerarNotaFiscal(Pedido pedido) {
@@ -48,7 +48,6 @@ public class GeradorNotaFiscalServiceImpl implements GeradorNotaFiscalService {
 				.destinatario(destinatario)
 				.build();
 
-		// Tarefas assíncronas
 		Callable<Void> estoqueTask = () -> {
 			new EstoqueService().enviarNotaFiscalParaBaixaEstoque(notaFiscal);
 			return null;
@@ -72,7 +71,7 @@ public class GeradorNotaFiscalServiceImpl implements GeradorNotaFiscalService {
 		List<Callable<Void>> tasks = Arrays.asList(estoqueTask, registroTask, entregaTask, financeiroTask);
 
 		try {
-			executor.invokeAll(tasks); // -> espera todas as tarefas terminarem
+			executor.invokeAll(tasks);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new RuntimeException("Erro ao processar integrações", e);
